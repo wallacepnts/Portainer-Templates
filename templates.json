@@ -13,9 +13,8 @@
         "ports": ["5006:5006/tcp"],
         "volumes": [
           {
-            "type": "bind",
-            "source": "/home/wallace/data",
-            "target": "/data"
+            "container": "/data",
+            "host": "/home/wallace/novoactual"
           }
         ]
       },
