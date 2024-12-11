@@ -1,32 +1,39 @@
-[
-    {
-      "title": "Nginx Web Server",
-      "description": "Simple and efficient web server.",
-      "image": "nginx:latest",
-      "category": "Web",
-      "platform": "linux/amd64",
-      "repository": "https://hub.docker.com/_/nginx",
-      "env": [
-        {
-          "name": "NGINX_PORT",
-          "label": "Port",
-          "default": "8080",
-          "required": true
-        }
-      ],
-      "volumes": [
-        {
-          "name": "html_volume",
-          "description": "Mount the HTML files",
-          "default": "/usr/share/nginx/html"
-        }
-      ],
-      "ports": [
-        {
-          "container": "80",
-          "host": "8080"
-        }
-      ]
-    }
-  ]
+{
+    "version": "3",
+    "templates": [
+      {
+        "id": 1,
+        "type": 1,
+        "title": "Nginx Web Server",
+        "description": "Simple and efficient web server",
+        "categories": ["web", "server"],
+        "platform": "linux",
+        "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
+        "image": "nginx:latest",
+        "ports": ["8080:80/tcp"],
+        "volumes": [
+          {
+            "container": "/usr/share/nginx/html"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "type": 1,
+        "title": "Nginx Web Server (Custom HTML)",
+        "description": "Nginx server with custom HTML mounted from a volume",
+        "categories": ["web", "server"],
+        "platform": "linux",
+        "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
+        "image": "nginx:latest",
+        "ports": ["8080:80/tcp"],
+        "volumes": [
+          {
+            "container": "/usr/share/nginx/html",
+            "host": "/path/to/your/html"
+          }
+        ]
+      }
+    ]
+  }
   
