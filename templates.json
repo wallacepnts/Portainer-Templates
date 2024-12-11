@@ -10,7 +10,6 @@
         "platform": "linux",
         "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/actual.png",
         "image": "actualbudget/actual-server:latest",
-        "container_name": "actual-server", 
         "ports": ["5006:5006/tcp"],
         "volumes": [
           {
