@@ -13,8 +13,7 @@
         "ports": ["5006:5006/tcp"],
         "volumes": [
           {
-            "container": "/data",
-            "name": "actual"
+            "container": "/data"
           }
         ]
       },
