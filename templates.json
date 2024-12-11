@@ -14,7 +14,7 @@
         "volumes": [
           {
             "container": "/data",
-            "host": "/home/wallace/novoactual"
+            "bind": "/home/wallace/novoactual"
           }
         ]
       },
