@@ -1,0 +1,32 @@
+[
+    {
+      "title": "Nginx Web Server",
+      "description": "Simple and efficient web server.",
+      "image": "nginx:latest",
+      "category": "Web",
+      "platform": "linux/amd64",
+      "repository": "https://hub.docker.com/_/nginx",
+      "env": [
+        {
+          "name": "NGINX_PORT",
+          "label": "Port",
+          "default": "8080",
+          "required": true
+        }
+      ],
+      "volumes": [
+        {
+          "name": "html_volume",
+          "description": "Mount the HTML files",
+          "default": "/usr/share/nginx/html"
+        }
+      ],
+      "ports": [
+        {
+          "container": "80",
+          "host": "8080"
+        }
+      ]
+    }
+  ]
+  
