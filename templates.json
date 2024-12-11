@@ -6,15 +6,12 @@
         "type": 1,
         "title": "Actual Budget",
         "description": "Ferramenta de orçamento OpenSource local",
-        "categories": ["web", "server"],
-        "platform": "linux",
         "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/actual.png",
         "image": "actualbudget/actual-server:latest",
         "ports": ["5006:5006/tcp"],
         "volumes": [
           {
-            "container": "/data",
-            "bind": "/var/docker-binds/actual"
+            "container": "/data"
           }
         ]
       },
