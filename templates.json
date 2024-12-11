@@ -4,16 +4,16 @@
       {
         "id": 1,
         "type": 1,
-        "title": "Nginx Web Server",
-        "description": "Simple and efficient web server",
+        "title": "Actual Budget",
+        "description": "Ferramenta de orçamento OpenSource local",
         "categories": ["web", "server"],
         "platform": "linux",
-        "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
-        "image": "nginx:latest",
-        "ports": ["8080:80/tcp"],
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/actual.png",
+        "image": "actualbudget/actual-server:latest",
+        "ports": ["5006:5006/tcp"],
         "volumes": [
           {
-            "container": "/usr/share/nginx/html"
+            "container": "/srv/docker_apps/actual-budget:/data"
           }
         ]
       },
