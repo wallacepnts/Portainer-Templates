@@ -14,7 +14,7 @@
         "volumes": [
           {
             "container": "/data",
-            "bind": "/home/wallace/novoactual"
+            "bind": "/var/docker-binds/actual"
           }
         ]
       },
