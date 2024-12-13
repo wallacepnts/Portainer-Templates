@@ -4,8 +4,31 @@
       {
         "id": 1,
         "type": 1,
+        "title": "Homarr",
+        "description": "O Homarr é um dashboard personalizável que centraliza e organiza o acesso aos seus aplicativos e serviços em um único lugar.",
+        "note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/ee/install/docker.html\" target=\"_blank\">GitLab documentation</a> to get started.",
+        "platform": "linux",
+        "logo": "https://homarr.dev/img/logo.png",
+        "image": "ghcr.io/ajnart/homarr:latest",
+        "ports": ["80:7575/tcp"],
+        "volumes": [
+          {
+            "container": "/app/data/configs"
+          },
+          {
+            "container": "/app/public/icons"
+          },
+          {
+            "container": "/data"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "type": 1,
         "title": "Actual Budget",
-        "description": "Ferramenta de orçamento OpenSource local",
+        "description": "O Actual Budget é uma ferramenta de planejamento financeiro simples e offline para gerenciar orçamentos e despesas com total controle.",
+        "platform": "linux",
         "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/actual.png",
         "image": "actualbudget/actual-server:latest",
         "ports": ["5006:5006/tcp"],
@@ -15,23 +38,6 @@
           }
         ]
       },
-      {
-        "id": 2,
-        "type": 1,
-        "title": "Nginx Web Server (Custom HTML)",
-        "description": "Nginx server with custom HTML mounted from a volume",
-        "categories": ["web", "server"],
-        "platform": "linux",
-        "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
-        "image": "nginx:latest",
-        "ports": ["8080:80/tcp"],
-        "volumes": [
-          {
-            "container": "/usr/share/nginx/html",
-            "host": "/path/to/your/html"
-          }
-        ]
-      }
     ]
   }
   
