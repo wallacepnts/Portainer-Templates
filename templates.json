@@ -7,9 +7,11 @@
         "title": "Homarr",
         "description": "O Homarr é um dashboard personalizável que centraliza e organiza o acesso aos seus aplicativos e serviços em um único lugar.",
         "note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/ee/install/docker.html\" target=\"_blank\">GitLab documentation</a> to get started.",
+        "name": "homarr",
         "platform": "linux",
         "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/homarr.svg",
         "image": "ghcr.io/ajnart/homarr:latest",
+        "restart_policy": "unless-stopped",
         "ports": ["80:7575/tcp"],
         "volumes": [
           {
