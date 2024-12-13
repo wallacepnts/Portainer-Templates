@@ -2,7 +2,6 @@
     "version": "3",
     "templates": [
       {
-        "id": 1,
         "type": 1,
         "title": "Homarr",
         "name": "homarr",
@@ -26,7 +25,6 @@
         ]
       },
       {
-        "id": 2,
         "type": 1,
         "title": "Actual Budget",
         "name": "actual",
@@ -40,7 +38,48 @@
             "container": "/data"
           }
         ]
-      }
+      },
+      {
+        "type": 1,
+        "title": "Nginx",
+        "name": "Nginx",
+        "note": "Portainer App Templates by <a href='https://www.technorabilia.com' target='_blank'>Technorabilia</a> based on data provided by <a href='https://www.linuxserver.io' target='_blank'>LinuxServer.io</a>.</p><p>Don't forget to create the volume directories on the host file system.</p><p>mkdir -p /volume1/docker/nginx/config</p>",
+        "description": "[Nginx](https://nginx.org/) is a simple webserver with php support. The config files reside in `/config` for easy user customization.",
+        "platform": "linux",
+        "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-banner.png",
+        "image": "linuxserver/nginx:latest",
+        "env": [
+          {
+            "name": "PUID",
+            "label": "PUID",
+            "default": "1000",
+            "description": "for UserID"
+          },
+          {
+            "name": "PGID",
+            "label": "PGID",
+            "default": "1000",
+            "description": "for GroupID"
+          },
+          {
+            "name": "TZ",
+            "label": "TZ",
+            "default": "America/Sao_Paulo",
+            "description": "specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)."
+          }
+        ],
+        "ports": [
+          "8080:80/tcp",
+          "443:443/tcp"
+        ],
+        "volumes": [
+        {
+          "container": "/config",
+          "bind": "/volume1/docker/nginx/config"
+        }
+        ],
+        "restart_policy": "unless-stopped"
+      },
     ]
   }
   
