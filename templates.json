@@ -29,7 +29,7 @@
         "title": "Actual Budget",
         "description": "O Actual Budget é uma ferramenta de planejamento financeiro simples e offline para gerenciar orçamentos e despesas com total controle.",
         "platform": "linux",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/actual.png",
+        "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/actual.svg",
         "image": "actualbudget/actual-server:latest",
         "ports": ["5006:5006/tcp"],
         "volumes": [
