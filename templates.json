@@ -75,7 +75,7 @@
         "volumes": [
         {
           "container": "/config",
-          "bind": "/volume1/docker/nginx/config"
+          "bind": "/opt/docker-volumes/nginx/config"
         }
         ],
         "restart_policy": "unless-stopped"
