@@ -1,100 +1,190 @@
 {
-  "version": "3",
-  "templates": [
-    {
-      "type": 1,
-      "title": "Homarr",
-      "name": "homarr",
-      "description": "O Homarr é um dashboard personalizável que centraliza e organiza o acesso aos seus aplicativos e serviços em um único lugar.",
-      "note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/ee/install/docker.html\" target=\"_blank\">GitLab documentation</a> to get started.",
-      "platform": "linux",
-      "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/homarr.svg",
-      "image": "ghcr.io/ajnart/homarr:latest",
-      "restart_policy": "unless-stopped",
-      "ports": ["80:7575/tcp"],
-      "volumes": [
-        {
-          "container": "/app/data/configs"
-        },
-        {
-          "container": "/app/public/icons"
-        },
-        {
-          "container": "/data"
-        }
-      ]
-    },
-    {
-      "type": 1,
-      "title": "Actual Budget",
-      "name": "actual-budget",
-      "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/actual-budget/data</p>",
-      "description": "O Actual Budget é uma ferramenta de planejamento financeiro simples e offline para gerenciar orçamentos e despesas com total controle.",
-      "platform": "linux",
-      "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/actual.svg",
-      "image": "actualbudget/actual-server:latest",
-      "env": [
-        {
-          "name": "PUID",
-          "label": "PUID",
-          "default": "1000"
-        },
-        {
-          "name": "PGID",
-          "label": "PGID",
-          "default": "1000"
-        },
-        {
-          "name": "TZ",
-          "label": "TZ",
-          "default": "America/Sao_Paulo"
-        }
-      ],
-      "ports": ["5006:5006/tcp"],
-      "volumes": [
-        {
-          "container": "/data",
-          "bind": "/opt/docker-volumes/actual-budget/data"
-        }
-      ]
-    },
-    {
-      "type": 1,
-      "title": "Nginx",
-      "name": "nginx",
-      "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/nginx/config</p>",
-      "description": "O Nginx é um servidor web simples com suporte a PHP.",
-      "platform": "linux",
-      "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-banner.png",
-      "image": "linuxserver/nginx:latest",
-      "env": [
-        {
-          "name": "PUID",
-          "label": "PUID",
-          "default": "1000"
-        },
-        {
-          "name": "PGID",
-          "label": "PGID",
-          "default": "1000"
-        },
-        {
-          "name": "TZ",
-          "label": "TZ",
-          "default": "America/Sao_Paulo"
-        }
-      ],
-      "ports": [
-        "8080:80/tcp",
-        "443:443/tcp"
-      ],
-      "volumes": [
+    "version": "3",
+    "templates": [
       {
-        "container": "/config",
-        "bind": "/opt/docker-volumes/nginx/config"
+        "type": 1,
+        "title": "Homarr",
+        "name": "homarr",
+        "note": "Não se esqueça de criar a pasta de volume:</p>",
+        "description": "O Homarr é um dashboard personalizável que centraliza e organiza o acesso aos seus aplicativos e serviços em um único lugar.",
+        "platform": "linux",
+        "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/homarr.svg",
+        "image": "ghcr.io/ajnart/homarr:latest",
+        "env": [
+          {
+            "name": "PUID",
+            "label": "PUID",
+            "default": "1000"
+          },
+          {
+            "name": "PGID",
+            "label": "PGID",
+            "default": "1000"
+          },
+          {
+            "name": "TZ",
+            "label": "TZ",
+            "default": "America/Sao_Paulo"
+          }
+        ],
+        "restart_policy": "unless-stopped",
+        "ports": ["80:7575/tcp"],
+        "volumes": [
+          {
+            "container": "/var/run/docker.sock",
+            "bind": "/var/run/docker.sock"
+          },
+          {
+            "container": "/app/data/configs",
+            "bind": "/opt/docker-volumes/homarr/configs"
+          },
+          {
+            "container": "/app/public/icons",
+            "bind": "/opt/docker-volumes/homarr/icons"
+          },
+          {
+            "container": "/data",
+            "bind": "/opt/docker-volumes/homarr/data"
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "title": "Actual Budget",
+        "name": "actual-budget",
+        "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/actual-budget</p>",
+        "description": "O Actual Budget é uma ferramenta de planejamento financeiro simples e offline para gerenciar orçamentos e despesas com total controle.",
+        "platform": "linux",
+        "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/actual.svg",
+        "image": "actualbudget/actual-server:latest",
+        "env": [
+          {
+            "name": "PUID",
+            "label": "PUID",
+            "default": "1000"
+          },
+          {
+            "name": "PGID",
+            "label": "PGID",
+            "default": "1000"
+          },
+          {
+            "name": "TZ",
+            "label": "TZ",
+            "default": "America/Sao_Paulo"
+          }
+        ],
+        "ports": ["5006:5006/tcp"],
+        "volumes": [
+          {
+            "container": "/data",
+            "bind": "/opt/docker-volumes/actual-budget"
+          }
+        ],
+        "restart_policy": "unless-stopped"
+      },
+      {
+        "type": 1,
+        "title": "Nginx",
+        "name": "nginx",
+        "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/nginx/config</p>",
+        "description": "O Nginx é um servidor web simples com suporte a PHP.",
+        "platform": "linux",
+        "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-banner.png",
+        "image": "linuxserver/nginx:latest",
+        "env": [
+          {
+            "name": "PUID",
+            "label": "PUID",
+            "default": "1000"
+          },
+          {
+            "name": "PGID",
+            "label": "PGID",
+            "default": "1000"
+          },
+          {
+            "name": "TZ",
+            "label": "TZ",
+            "default": "America/Sao_Paulo"
+          }
+        ],
+        "ports": [
+          "8080:80/tcp",
+          "443:443/tcp"
+        ],
+        "volumes": [
+        {
+          "container": "/config",
+          "bind": "/opt/docker-volumes/nginx"
+        }
+        ],
+        "restart_policy": "unless-stopped"
+      },
+      {
+        "type": 1,
+        "title": "Lubelogger",
+        "name": "lubelogger",
+        "note": "Não se esqueça de criar as pastas de volumes:</p><p>mkdir -p /opt/docker-volumes/lubelogger/config</p><p>mkdir -p /opt/docker-volumes/lubelogger/data</p><p>mkdir -p /opt/docker-volumes/lubelogger/translations</p><p>mkdir -p /opt/docker-volumes/lubelogger/documents</p><p>mkdir -p /opt/docker-volumes/lubelogger/images</p><p>mkdir -p /opt/docker-volumes/lubelogger/temp</p><p>mkdir -p /opt/docker-volumes/lubelogger/log</p><p>mkdir -p /opt/docker-volumes/lubelogger/keys</p>",
+        "description": "O Lubelogger é uma aplicação para o gerenciamento de manutenção, combustpivel e controle de lubrificação de veículos.",
+        "platform": "linux",
+        "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/lubelogger.png",
+        "image": "ghcr.io/hargata/lubelogger:latest",
+        "env": [
+          {
+            "name": "PUID",
+            "label": "PUID",
+            "default": "1000"
+          },
+          {
+            "name": "PGID",
+            "label": "PGID",
+            "default": "1000"
+          },
+          {
+            "name": "TZ",
+            "label": "TZ",
+            "default": "America/Sao_Paulo"
+          }
+        ],
+        "ports": [
+          "8090:8080/tcp"
+        ],
+        "volumes": [
+        {
+          "container": "/App/config",
+          "bind": "/opt/docker-volumes/lubelogger/config"
+        },
+        {
+          "container": "/App/data",
+          "bind": "/opt/docker-volumes/lubelogger/data"
+        },
+        {
+          "container": "/App/wwwroot/translations",
+          "bind": "/opt/docker-volumes/lubelogger/translations"
+        },
+        {
+          "container": "/App/wwwroot/documents",
+          "bind": "/opt/docker-volumes/lubelogger/documents"
+        },{
+          "container": "/App/wwwroot/images",
+          "bind": "/opt/docker-volumes/lubelogger/images"
+        },
+        {
+          "container": "/App/wwwroot/temp",
+          "bind": "/opt/docker-volumes/lubelogger/temp"
+        },
+        {
+          "container": "/App/log",
+          "bind": "/opt/docker-volumes/lubelogger/log"
+        },
+        {
+          "container": "/root/.aspnet/DataProtection-Keys",
+          "bind": "/opt/docker-volumes/lubelogger/keys"
+        }
+        ],
+        "restart_policy": "unless-stopped"
       }
-      ],
-      "restart_policy": "unless-stopped"
-    }
-  ]
-}
+    ]
+  }
+  
