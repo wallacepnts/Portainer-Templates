@@ -1,11 +1,11 @@
 {
-    "version": "3",
+    "version": "2",
     "templates": [
       {
         "type": 1,
         "title": "Homarr",
         "name": "homarr",
-        "note": "Não se esqueça de criar a pasta de volume:</p>",
+        "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/homarr</p>",
         "description": "O Homarr é um dashboard personalizável que centraliza e organiza o acesso aos seus aplicativos e serviços em um único lugar.",
         "platform": "linux",
         "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/homarr.svg",
@@ -87,7 +87,7 @@
         "type": 1,
         "title": "Nginx",
         "name": "nginx",
-        "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/nginx/config</p>",
+        "note": "Não se esqueça de criar a pasta de volume:</p><p>mkdir -p /opt/docker-volumes/nginx</p>",
         "description": "O Nginx é um servidor web simples com suporte a PHP.",
         "platform": "linux",
         "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-banner.png",
@@ -122,14 +122,17 @@
         "restart_policy": "unless-stopped"
       },
       {
-        "type": 1,
+        "type": 3,
         "title": "Lubelogger",
         "name": "lubelogger",
-        "note": "Não se esqueça de criar as pastas de volumes:</p><p>mkdir -p /opt/docker-volumes/lubelogger/config</p><p>mkdir -p /opt/docker-volumes/lubelogger/data</p><p>mkdir -p /opt/docker-volumes/lubelogger/translations</p><p>mkdir -p /opt/docker-volumes/lubelogger/documents</p><p>mkdir -p /opt/docker-volumes/lubelogger/images</p><p>mkdir -p /opt/docker-volumes/lubelogger/temp</p><p>mkdir -p /opt/docker-volumes/lubelogger/log</p><p>mkdir -p /opt/docker-volumes/lubelogger/keys</p>",
+        "note": "Não se esqueça de criar as pastas de volumes:</p><p>mkdir -p /opt/docker-volumes/lubelogger/config<br>mkdir -p /opt/docker-volumes/lubelogger/data<br>mkdir -p /opt/docker-volumes/lubelogger/translations<br>mkdir -p /opt/docker-volumes/lubelogger/documents<br>mkdir -p /opt/docker-volumes/lubelogger/images<br>mkdir -p /opt/docker-volumes/lubelogger/temp<br>mkdir -p /opt/docker-volumes/lubelogger/log<br>mkdir -p /opt/docker-volumes/lubelogger/keys<br>mkdir -p /opt/docker-volumes/lubelogger/init.sql<br>mkdir -p /opt/docker-volumes/lubelogger/postgres",
         "description": "O Lubelogger é uma aplicação para o gerenciamento de manutenção, combustpivel e controle de lubrificação de veículos.",
         "platform": "linux",
         "logo": "https://raw.githubusercontent.com/wallacepnts/Portainer-Templates/refs/heads/main/logos/lubelogger.png",
-        "image": "ghcr.io/hargata/lubelogger:latest",
+        "repository": {
+        "url": "https://github.com/wallacepnts/Portainer-Templates",
+        "stackfile": "stacks/lubelogger/docker-compose.yml"
+      },
         "env": [
           {
             "name": "PUID",
@@ -149,39 +152,6 @@
         ],
         "ports": [
           "8090:8080/tcp"
-        ],
-        "volumes": [
-        {
-          "container": "/App/config",
-          "bind": "/opt/docker-volumes/lubelogger/config"
-        },
-        {
-          "container": "/App/data",
-          "bind": "/opt/docker-volumes/lubelogger/data"
-        },
-        {
-          "container": "/App/wwwroot/translations",
-          "bind": "/opt/docker-volumes/lubelogger/translations"
-        },
-        {
-          "container": "/App/wwwroot/documents",
-          "bind": "/opt/docker-volumes/lubelogger/documents"
-        },{
-          "container": "/App/wwwroot/images",
-          "bind": "/opt/docker-volumes/lubelogger/images"
-        },
-        {
-          "container": "/App/wwwroot/temp",
-          "bind": "/opt/docker-volumes/lubelogger/temp"
-        },
-        {
-          "container": "/App/log",
-          "bind": "/opt/docker-volumes/lubelogger/log"
-        },
-        {
-          "container": "/root/.aspnet/DataProtection-Keys",
-          "bind": "/opt/docker-volumes/lubelogger/keys"
-        }
         ],
         "restart_policy": "unless-stopped"
       }

@@ -1,0 +1,44 @@
+---
+version: "3.4"
+
+services:
+  app:
+    image: ghcr.io/hargata/lubelogger:latest
+    build: .
+    restart: unless-stopped
+    # volumes used to keep data persistent
+    volumes:
+      - /opt/docker-volumes/lubelogger/config:/App/config
+      - /opt/docker-volumes/lubelogger/data:/App/data
+      - /opt/docker-volumes/lubelogger/translations:/App/wwwroot/translations
+      - /opt/docker-volumes/lubelogger/documents:/App/wwwroot/documents
+      - /opt/docker-volumes/lubelogger/images:/App/wwwroot/images
+      - /opt/docker-volumes/lubelogger/temp:/App/wwwroot/temp
+      - /opt/docker-volumes/lubelogger/log:/App/log
+      - /opt/docker-volumes/lubelogger/keys:/root/.aspnet/DataProtection-Keys
+    # expose port and/or use serving via traefik
+    ports:
+      - 8090:8080
+
+  postgres:
+    image: postgres:14
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "lubelogger"
+      POSTGRES_PASSWORD: "lubepass"
+      POSTGRES_DB: "lubelogger"
+    volumes:
+      - /opt/docker-volumes/lubelogger/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /opt/docker-volumes/lubelogger/postgres:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+
+volumes:
+  config:
+  data:
+  translations:
+  documents:
+  images:
+  temp:
+  log:
+  keys:
+  postgres:
